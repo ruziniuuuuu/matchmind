@@ -146,7 +146,7 @@ async def analyst(state: GraphState, ctx: WorkflowContext[GraphEnvelope]) -> Non
             state.trace.append(
                 TraceStep(
                     agent="TacticalAnalyst",
-                    model=settings.deepseek_model,
+                    model=settings.active_model,
                     prompt_version=PROMPT_VERSION,
                     latency_ms=round((time.perf_counter() - started) * 1000, 1),
                     status="error",
@@ -159,7 +159,7 @@ async def analyst(state: GraphState, ctx: WorkflowContext[GraphEnvelope]) -> Non
         state.trace.append(
             TraceStep(
                 agent="TacticalAnalyst",
-                model=settings.deepseek_model,
+                model=settings.active_model,
                 prompt_version=PROMPT_VERSION,
                 latency_ms=round((time.perf_counter() - started) * 1000, 1),
                 status="ok",
@@ -176,7 +176,7 @@ async def producer(envelope: GraphEnvelope, ctx: WorkflowContext[GraphEnvelope])
         envelope.state.trace.append(
             TraceStep(
                 agent="StoryProducer",
-                model=settings.deepseek_model,
+                model=settings.active_model,
                 prompt_version=PROMPT_VERSION,
                 latency_ms=round((time.perf_counter() - started) * 1000, 1),
                 status="ok",
@@ -187,7 +187,7 @@ async def producer(envelope: GraphEnvelope, ctx: WorkflowContext[GraphEnvelope])
         envelope.state.trace.append(
             TraceStep(
                 agent="StoryProducer",
-                model=settings.deepseek_model,
+                model=settings.active_model,
                 prompt_version=PROMPT_VERSION,
                 latency_ms=round((time.perf_counter() - started) * 1000, 1),
                 status="fallback",
@@ -211,7 +211,7 @@ async def audience(envelope: GraphEnvelope, ctx: WorkflowContext[GraphEnvelope])
     envelope.state.trace.append(
         TraceStep(
             agent="AudienceEditor",
-            model=settings.deepseek_model,
+            model=settings.active_model,
             prompt_version=PROMPT_VERSION,
             latency_ms=round((time.perf_counter() - started) * 1000, 1),
             status="ok",
@@ -231,7 +231,7 @@ async def checker(envelope: GraphEnvelope, ctx: WorkflowContext[GraphEnvelope]) 
         envelope.state.trace.append(
             TraceStep(
                 agent="FactChecker",
-                model=settings.deepseek_model,
+                model=settings.active_model,
                 prompt_version=PROMPT_VERSION,
                 latency_ms=round((time.perf_counter() - started) * 1000, 1),
                 status="ok",
@@ -243,7 +243,7 @@ async def checker(envelope: GraphEnvelope, ctx: WorkflowContext[GraphEnvelope]) 
         envelope.state.trace.append(
             TraceStep(
                 agent="FactChecker",
-                model=settings.deepseek_model,
+                model=settings.active_model,
                 prompt_version=PROMPT_VERSION,
                 latency_ms=round((time.perf_counter() - started) * 1000, 1),
                 status="fallback",
@@ -315,7 +315,7 @@ async def revise(envelope: GraphEnvelope, ctx: WorkflowContext[GraphEnvelope]) -
     envelope.state.trace.append(
         TraceStep(
             agent="StoryProducer:revise",
-            model=settings.deepseek_model,
+            model=settings.active_model,
             prompt_version=PROMPT_VERSION,
             latency_ms=round((time.perf_counter() - started) * 1000, 1),
             status=status,
@@ -344,7 +344,7 @@ async def recheck(envelope: GraphEnvelope, ctx: WorkflowContext[GraphEnvelope]) 
     envelope.state.trace.append(
         TraceStep(
             agent="FactChecker:recheck",
-            model=settings.deepseek_model,
+            model=settings.active_model,
             prompt_version=PROMPT_VERSION,
             latency_ms=round((time.perf_counter() - started) * 1000, 1),
             status=status,
@@ -389,7 +389,7 @@ async def finalize(envelope: GraphEnvelope, ctx: WorkflowContext[PipelineResult]
         state.trace.append(
             TraceStep(
                 agent="Director",
-                model=settings.deepseek_model,
+                model=settings.active_model,
                 prompt_version=PROMPT_VERSION,
                 latency_ms=round((time.perf_counter() - director_started) * 1000, 1),
                 status="ok",
@@ -400,7 +400,7 @@ async def finalize(envelope: GraphEnvelope, ctx: WorkflowContext[PipelineResult]
         state.trace.append(
             TraceStep(
                 agent="Director",
-                model=settings.deepseek_model,
+                model=settings.active_model,
                 prompt_version=PROMPT_VERSION,
                 latency_ms=round((time.perf_counter() - director_started) * 1000, 1),
                 status="fallback",

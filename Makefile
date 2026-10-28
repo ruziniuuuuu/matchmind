@@ -1,4 +1,4 @@
-.PHONY: install smoke data dev test lint web-install web-build web-dev static-demo evaluate perf
+.PHONY: smoke-azure install smoke data dev test lint web-install web-build web-dev static-demo evaluate perf
 
 install:
 	uv sync --extra dev
@@ -36,3 +36,6 @@ evaluate:
 
 perf:
 	uv run python scripts/benchmark.py
+
+smoke-azure:
+	uv run python scripts/smoke_azure.py

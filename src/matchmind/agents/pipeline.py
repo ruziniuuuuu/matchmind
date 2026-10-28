@@ -275,7 +275,7 @@ class MatchMindPipeline:
                 trace.append(
                     TraceStep(
                         agent=f"AudienceEditor:{profile}:{language}",
-                        model=settings.deepseek_model,
+                        model=settings.active_model,
                         prompt_version=PROMPT_VERSION,
                         latency_ms=0,
                         status="fallback",
@@ -303,7 +303,7 @@ class MatchMindPipeline:
                 trace.append(
                     TraceStep(
                         agent="TacticalAnalyst",
-                        model=settings.deepseek_model,
+                        model=settings.active_model,
                         prompt_version=PROMPT_VERSION,
                         latency_ms=round((time.perf_counter() - start) * 1000, 1),
                         status="ok",
@@ -314,7 +314,7 @@ class MatchMindPipeline:
                 trace.append(
                     TraceStep(
                         agent="TacticalAnalyst",
-                        model=settings.deepseek_model,
+                        model=settings.active_model,
                         prompt_version=PROMPT_VERSION,
                         latency_ms=round((time.perf_counter() - start) * 1000, 1),
                         status="error",
@@ -384,7 +384,7 @@ class MatchMindPipeline:
             trace.append(
                 TraceStep(
                     agent="StoryProducer",
-                    model=settings.deepseek_model,
+                    model=settings.active_model,
                     prompt_version=PROMPT_VERSION,
                     latency_ms=round((time.perf_counter() - producer_start) * 1000, 1),
                     status="ok",
@@ -396,7 +396,7 @@ class MatchMindPipeline:
             trace.append(
                 TraceStep(
                     agent="StoryProducer",
-                    model=settings.deepseek_model,
+                    model=settings.active_model,
                     prompt_version=PROMPT_VERSION,
                     latency_ms=0,
                     status="fallback",
@@ -408,7 +408,7 @@ class MatchMindPipeline:
             trace.append(
                 TraceStep(
                     agent="FactChecker",
-                    model=settings.deepseek_model,
+                    model=settings.active_model,
                     prompt_version=PROMPT_VERSION,
                     latency_ms=round((time.perf_counter() - checker_start) * 1000, 1),
                     status="ok",
@@ -421,7 +421,7 @@ class MatchMindPipeline:
             trace.append(
                 TraceStep(
                     agent="FactChecker",
-                    model=settings.deepseek_model,
+                    model=settings.active_model,
                     prompt_version=PROMPT_VERSION,
                     latency_ms=0,
                     status="fallback",
@@ -436,7 +436,7 @@ class MatchMindPipeline:
         trace.append(
             TraceStep(
                 agent="AudienceEditor",
-                model=settings.deepseek_model,
+                model=settings.active_model,
                 prompt_version=PROMPT_VERSION,
                 latency_ms=round((time.perf_counter() - cards_start) * 1000, 1),
                 status="fallback" if card_fallback else "ok",
@@ -466,7 +466,7 @@ class MatchMindPipeline:
                 trace.append(
                     TraceStep(
                         agent="StoryProducer:revise",
-                        model=settings.deepseek_model,
+                        model=settings.active_model,
                         prompt_version=PROMPT_VERSION,
                         latency_ms=round((time.perf_counter() - revise_start) * 1000, 1),
                         status="ok",
@@ -477,7 +477,7 @@ class MatchMindPipeline:
                 trace.append(
                     TraceStep(
                         agent="FactChecker:recheck",
-                        model=settings.deepseek_model,
+                        model=settings.active_model,
                         prompt_version=PROMPT_VERSION,
                         latency_ms=round((time.perf_counter() - revise_start) * 1000, 1),
                         status="ok",
@@ -490,7 +490,7 @@ class MatchMindPipeline:
                 trace.append(
                     TraceStep(
                         agent="FactChecker:recheck",
-                        model=settings.deepseek_model,
+                        model=settings.active_model,
                         prompt_version=PROMPT_VERSION,
                         latency_ms=0,
                         status="fallback",
@@ -532,7 +532,7 @@ class MatchMindPipeline:
             trace.append(
                 TraceStep(
                     agent="Director",
-                    model=settings.deepseek_model,
+                    model=settings.active_model,
                     prompt_version=PROMPT_VERSION,
                     latency_ms=round((time.perf_counter() - director_start) * 1000, 1),
                     status="ok",
@@ -544,7 +544,7 @@ class MatchMindPipeline:
             trace.append(
                 TraceStep(
                     agent="Director",
-                    model=settings.deepseek_model,
+                    model=settings.active_model,
                     prompt_version=PROMPT_VERSION,
                     latency_ms=0,
                     status="fallback",
